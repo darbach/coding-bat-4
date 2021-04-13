@@ -11,7 +11,7 @@ class Array3Test {
 
   private static Array3 array3 = new Array3();
 
-  @ParameterizedTest
+  @ParameterizedTest(name = "[{index}]Asserting canBalance({0}) == {1}")
   @MethodSource("canBalance")
   void canBalance(int[] nums, boolean expected) {
     assertEquals(expected, array3.canBalance(nums));
