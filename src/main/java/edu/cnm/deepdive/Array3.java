@@ -2,7 +2,7 @@ package edu.cnm.deepdive;
 
 import java.util.Arrays;
 
-public abstract class Array3 {
+public class Array3 {
 
   /**
    * Given a non-empty array, return true if there is a place to split the array so that the sum of
@@ -15,7 +15,7 @@ public abstract class Array3 {
    * @param nums a set of numbers
    * @return whether there is a place to split the array
    */
-  public static boolean canBalance(int[] nums) {
+  public boolean canBalance(int[] nums) {
     boolean found = false;
     int i = 1;
     while(!found && i < nums.length) {
@@ -29,7 +29,7 @@ public abstract class Array3 {
     return found;
   }
 
-  public static boolean canBalance2(int[] nums) {
+  public boolean canBalance2(int[] nums) {
     //Works but coding bat doesn't like System.arraycopy.
     boolean found = false;
     int i = 1;
@@ -46,7 +46,7 @@ public abstract class Array3 {
     return found;
   }
 
-  public static boolean canBalance3(int[] nums) {
+  public boolean canBalance3(int[] nums) {
     // This one is buggy.
     int leftSum = 0;
     int rightSum = 0;

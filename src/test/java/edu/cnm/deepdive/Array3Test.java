@@ -9,10 +9,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class Array3Test {
 
+  private static Array3 array3 = new Array3();
+
   @ParameterizedTest
   @MethodSource("canBalance")
   void canBalance(int[] nums, boolean expected) {
-    assertEquals(expected, Array3.canBalance3(nums));
+    assertEquals(expected, array3.canBalance(nums));
   }
 
   static Stream<Arguments> canBalance() {
