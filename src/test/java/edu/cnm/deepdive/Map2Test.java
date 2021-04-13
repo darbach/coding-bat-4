@@ -15,7 +15,6 @@ class Map2Test {
   @ParameterizedTest(name = "[{index}]Asserting wordCount({0}) == {1}")
   @MethodSource({"wordCount"})
   void wordCount(String[] strings, Map<String, Integer> expected) {
-    Map<String, Integer> actual = map2.wordCount(strings);
     assertTrue(mapEquals(expected, map2.wordCount(strings)));
   }
 
@@ -43,7 +42,7 @@ class Map2Test {
       areEqual = false;
     } else {
       for (String m1Key : m1.keySet()){
-        if (m1.get(m1Key) != m2.get(m1Key)) {
+        if (!m1.get(m1Key).equals(m2.get(m1Key))) {
           areEqual = false;
           break;
         }
