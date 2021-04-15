@@ -15,53 +15,24 @@ public class Array3 {
    * @param nums a set of numbers
    * @return whether there is a place to split the array
    */
-  public boolean canBalance(int[] nums) {
-    boolean found = false;
-    int i = 1;
-    while(!found && i < nums.length) {
-      int[] left = Arrays.copyOfRange(nums, 0, i);
-      int[] right = Arrays.copyOfRange(nums, i, nums.length);
-      i++;
-      if (Arrays.stream(left).sum() == Arrays.stream(right).sum()) {
-        found = true;
-      }
-    }
-    return found;
-  }
-
-  public boolean canBalance2(int[] nums) {
-    //Works but coding bat doesn't like System.arraycopy.
-    boolean found = false;
-    int i = 1;
-    while(!found && i < nums.length) {
-      int[] left = new int[i];
-      int[] right = new int[nums.length - i];
-      System.arraycopy(nums, 0, left, 0, i);
-      System.arraycopy(nums, i, right, 0, nums.length - i);
-      i++;
-      if (Arrays.stream(left).sum() == Arrays.stream(right).sum()) {
-        found = true;
-      }
-    }
-    return found;
-  }
-
-  public boolean canBalance3(int[] nums) {
-    // This one is buggy.
-    int leftSum = 0;
+ public boolean canBalance(int[] nums) { // O(n) time, 0(1) space
+    boolean balanced = false;
     int rightSum = 0;
-    int leftIter = 0;
-    int rightIter = nums.length - 1;
-    while (leftIter <= rightIter) {
-      if (leftSum <= rightSum) {
-        leftSum += nums[leftIter];
-        leftIter++;
-      } else { //(leftSum > rightSum)
-        rightSum += nums[rightIter];
-        rightIter--;
+    for (int value : nums) { //calculate the total sum for a later add/subtract pass
+      rightSum += value;
+    }
+    if (rightSum == 0) { // special case
+      balanced = true;
+    } else if (rightSum % 2 == 0){ // an odd sum cannot be balanced
+      int leftSum = 0;
+      for (int value : nums) {
+        if ((leftSum += value) == (rightSum -= value)) {
+          balanced = true;
+          break;
+        }
       }
     }
-    return (leftSum == rightSum);
-  }
+    return balanced;
+ }
 
 }
